@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -17,17 +16,15 @@ public class EnemyMovement : MonoBehaviour
         myRigidbody.velocity = new Vector2(moveSpeed, 0f);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("Exit 2D");
         moveSpeed = -moveSpeed;
         FlipEnemyFacing();
     }
 
     void FlipEnemyFacing()
     {
-        Debug.Log("Testing");
         // changing direction wherever the direction is, but when it triggers something
-        transform.localScale = new Vector2(-Mathf.Sign(myRigidbody.velocity.x), 1f);
+        transform.localScale = new Vector2(-(Mathf.Sign(myRigidbody.velocity.x)), 1f);
     }
 }
